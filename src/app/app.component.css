@@ -1,0 +1,11 @@
+*{
+    padding: 0px;
+    margin:0px;
+}
+.head {
+    display: flex;
+    justify-content: center;
+    background: blue;
+    height: 70px;
+    align-items: center;
+}
