@@ -1,0 +1,28 @@
+
+Future Scope =>
+------------
+
+Hybrid Models for Wind Farm Power Forecasting -> Combination of the physical and statistical modelling will be involved.
+
+
+Estimation of Forecast Uncertainity -> Unceratainity analysis will be involved and will play a key role in grid integration and other power operating systems.
+
+
+Condition Monitoring of Wind Farms -> Good performing forecasting models for wind power and wind turbine power curve models can also be used as performance indicator for the health of a wind turbine.
+
+
+Models for wind Power Ramp Forecasting -> The variability in wind power can present a challenge to the grid. The ramp event can be characterized by a sudden large change in wind power. Accurate models for ramp event detection and forecasting is important for maintaining the stability of a grid.
+
+
+Use of Wind Power Forecasting in Power System Operations -> Accurate models for wind power forecasting aids in several power system operations like operating reserve requirements, unit commitment, dispatch formulations etc.
+
+
+ 
+ 
+
+
+
+
+
+
+
