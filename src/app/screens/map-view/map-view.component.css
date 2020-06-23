@@ -1,0 +1,9 @@
+.mapView {
+    display: flex;
+    width: 500px;;
+}
+.mapBlock {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

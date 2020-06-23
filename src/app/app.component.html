@@ -1,3 +1,12 @@
-<div class="head">
-  Windplant power Predction
-</div>
+<mat-sidenav-container class="example-container" fullscreen autosize>
+  <mat-sidenav class="sideNav" mode="side" opened>
+    <mat-nav-list class="sidebar-list" *ngFor="let item of sideMenu">
+      <div class="listItem" mat-list-item (click)="clickNav(item)">{{item.name}}</div>
+    </mat-nav-list>
+    <div class="listItem" mat-list-item>Logout</div>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <!-- Main content -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

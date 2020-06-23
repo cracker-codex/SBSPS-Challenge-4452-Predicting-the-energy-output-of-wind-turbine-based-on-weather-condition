@@ -1,11 +1,20 @@
-*{
-    padding: 0px;
-    margin:0px;
-}
-.head {
+.sidebar-container {
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+.sidebar-list {
     display: flex;
     justify-content: center;
-    background: blue;
-    height: 70px;
-    align-items: center;
 }
+.sideNav {
+    width: 200px;
+}
+.listItem{
+    text-align: center;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
