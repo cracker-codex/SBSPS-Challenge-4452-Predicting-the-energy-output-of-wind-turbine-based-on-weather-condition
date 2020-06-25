@@ -1,12 +1,32 @@
-<mat-sidenav-container class="example-container" fullscreen autosize>
-  <mat-sidenav class="sideNav" mode="side" opened>
-    <mat-nav-list class="sidebar-list" *ngFor="let item of sideMenu">
-      <div class="listItem" mat-list-item (click)="clickNav(item)">{{item.name}}</div>
-    </mat-nav-list>
-    <div class="listItem" mat-list-item>Logout</div>
-  </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <!-- Main content -->
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<!-- <div id="map_canvas">
+    <google-map >
+    </google-map>
+</div> -->
+
+<!-- <div>
+    <agm-map>
+
+    </agm-map>
+    <div>
+
+    </div>
+</div> -->
+
+<div>
+  <div class="topBar">
+    <div slot="end" class="btnClass">
+      <button style="background: transparent" mat-fab color="primary">
+          <mat-icon>search</mat-icon>              
+      </button>
+      <button style="margin-left: 30px;background-color: green" mat-fab color="primary">
+          <mat-icon>gps_fixed</mat-icon>              
+      </button>
+    </div>
+  </div>
+  <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+    <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+  <div class="footerParent">
+    <div class="groundTag"></div>
+  </div>
+</div>

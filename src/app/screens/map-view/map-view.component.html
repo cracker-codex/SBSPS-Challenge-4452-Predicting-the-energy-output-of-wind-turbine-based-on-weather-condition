@@ -1,7 +1,18 @@
-<div>
-
-<div class="mapBlock">
-    <google-map class="mapView">
+<!-- <div id="map_canvas">
+    <google-map >
     </google-map>
-</div>
-</div>
+</div> -->
+
+<!-- <div>
+    <agm-map>
+
+    </agm-map>
+    <div>
+
+    </div>
+</div> -->
+
+
+<agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+    <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>

@@ -9,17 +9,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { AnalyticsComponent } from './screens/analytics/analytics.component';
 import { MapViewComponent } from './screens/map-view/map-view.component';
-import { SettingsComponent } from './screens/settings/settings.component';
-import { LoginComponent } from './screens/login/login.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {AgmCoreModule} from '@agm/core';
 // import {} from ''
 @NgModule({
   declarations: [
     AppComponent,
     AnalyticsComponent,
     MapViewComponent,
-    SettingsComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +27,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatSliderModule,
     MatSidenavModule,
     MatListModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatButtonModule,
+    MatIconModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBBNu4JPVrzoTv_4I3UnAAygHNeRuiK5II'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

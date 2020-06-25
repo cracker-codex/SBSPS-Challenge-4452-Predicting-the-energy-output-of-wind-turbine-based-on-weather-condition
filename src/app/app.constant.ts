@@ -10,10 +10,5 @@ export const APP = {
             route: '/map-view',
             iconName: ''
         },
-        {
-            name: 'Settings',
-            route: '/settings',
-            iconName: ''
-        }
     ]
 };

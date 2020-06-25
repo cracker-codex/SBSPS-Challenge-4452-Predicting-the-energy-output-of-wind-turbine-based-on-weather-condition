@@ -8,13 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  sideMenu = APP.SIDE_MENU;
-  title = 'dashboard';
-  screenWidth: number;
+  searchIcon = '../assets/icons/2x/search';
+  gpsIcon = '../assets/icons/2x/gps';
+  texto: string = 'Wenceslau Braz - Cuidado com as cargas';
+  lat: number = -23.8779431;
+  lng: number = -49.8046873;
+  zoom: number = 15;
   constructor(private route: Router) {
-    window.onresize = () => {
-      this.screenWidth = window.innerWidth;
-    };
   }
   async ngOnInit() {
   }
