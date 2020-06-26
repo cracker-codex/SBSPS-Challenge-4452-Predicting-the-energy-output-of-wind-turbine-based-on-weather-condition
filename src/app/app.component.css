@@ -34,3 +34,36 @@ agm-map {
   margin-top: 40px;
   margin-right: 40px;
 }
+.searchInp {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.19);
+  width: 80%;
+  height: 85px;
+  margin: 20px 30px 0px 30px; 
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.parentDiv {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.inp {
+  width: 50vw;
+  height: 50px;
+  font-size: 20px;
+  padding: 3px;
+  outline: none;
+}

@@ -14,8 +14,24 @@
 
 <div>
   <div class="topBar">
-    <div slot="end" class="btnClass">
-      <button style="background: transparent" mat-fab color="primary">
+    <div class="parentDiv">
+    <div *ngIf="searchToggle" class="searchInp">
+      <!-- <mat-form-field class="example-full-width"> -->
+        <div style="justify-content: space-between;display: flex">
+            <input class="inp" placeholder="Enter your farm location">
+            <button (click)="getSearch()" style="height: 59px" mat-raised-button color="primary">
+                <mat-icon>search</mat-icon>              
+            </button>
+            <button (click)="removeSearch()" style="height: 59px;margin-left: 1px;" mat-raised-button color="primary">
+                <mat-icon>close</mat-icon>              
+            </button>
+        </div>
+      <!-- </mat-form-field> -->
+
+    </div>
+  </div>
+    <div *ngIf="!searchToggle" slot="end" class="btnClass">
+      <button (click)="getSearch()" style="background: transparent" mat-fab color="primary">
           <mat-icon>search</mat-icon>              
       </button>
       <button style="margin-left: 30px;background-color: green" mat-fab color="primary">

@@ -14,9 +14,16 @@ export class AppComponent {
   lat: number = -23.8779431;
   lng: number = -49.8046873;
   zoom: number = 15;
+  searchToggle = false;
   constructor(private route: Router) {
   }
   async ngOnInit() {
+  }
+  removeSearch() {
+    this.searchToggle = false;
+  }
+  getSearch() {
+    this.searchToggle = true;
   }
   clickNav(item) {
     this.route.navigate([item.route])

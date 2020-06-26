@@ -13,6 +13,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {AgmCoreModule} from '@agm/core';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input'
 // import {} from ''
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import {AgmCoreModule} from '@agm/core';
     GoogleMapsModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBBNu4JPVrzoTv_4I3UnAAygHNeRuiK5II'
     })
