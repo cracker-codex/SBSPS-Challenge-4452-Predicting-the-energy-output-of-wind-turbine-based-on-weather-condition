@@ -67,3 +67,20 @@ agm-map {
   padding: 3px;
   outline: none;
 }
+.navigateURL {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  margin-bottom: 15px;
+}
+.moreTxt {
+  color: green;
+  font-size: 19px;
+  font-weight: bold;
+  display: flex;
+  cursor: pointer;
+}

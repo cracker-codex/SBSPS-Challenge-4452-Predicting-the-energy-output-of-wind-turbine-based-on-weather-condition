@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {APP} from './app.constant';
-import {Router} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
+// import  from './animation'
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ export class AppComponent {
   zoom: number = 15;
   searchToggle = false;
   constructor(private route: Router) {
+    route.navigate(['maps']);
   }
   async ngOnInit() {
   }
@@ -27,5 +30,12 @@ export class AppComponent {
   }
   clickNav(item) {
     this.route.navigate([item.route])
+  }
+  toPage() {
+    this.route.navigate(['analytics']);
+  }
+  
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

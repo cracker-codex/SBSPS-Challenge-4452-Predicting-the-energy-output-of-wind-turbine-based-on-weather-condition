@@ -8,11 +8,13 @@ import { MapViewComponent } from './screens/map-view/map-view.component';
 const routes: Routes = [
   {
     path: 'analytics',
-    component: AnalyticsComponent
+    component: AnalyticsComponent,
+    data: {animation: 'AnaliticalPage'}
   },
   {
-    path: '',
-    component: MapViewComponent
+    path: 'maps',
+    component: MapViewComponent,
+    data: {animation: 'MapViewPage'}
   },
 ];
 

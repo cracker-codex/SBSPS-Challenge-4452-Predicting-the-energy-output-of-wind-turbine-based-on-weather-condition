@@ -13,9 +13,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {AgmCoreModule} from '@agm/core';
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule} from '@angular/material/input'
-// import {} from ''
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {HttpClientModule} from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +37,13 @@ import {MatInputModule} from '@angular/material/input'
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    HttpClientModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBBNu4JPVrzoTv_4I3UnAAygHNeRuiK5II'
+      apiKey: 'AIzaSyApVXmCkBK4DuQXjHK2a94go-buufO2QsQ',
+      libraries: ["places"]
     })
   ],
   providers: [],
