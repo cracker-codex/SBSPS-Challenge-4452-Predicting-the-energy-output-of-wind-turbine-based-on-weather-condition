@@ -7,25 +7,31 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './map-view.component.html',
   styleUrls: ['./map-view.component.css']
 })
-export class MapViewComponent implements OnInit, AfterViewInit {
+export class MapViewComponent implements OnInit {
   texto: string = 'Wenceslau Braz - Cuidado com as cargas';
   lat: number = -23.8779431;
   lng: number = -49.8046873;
   zoom: number = 15;
   searchToggle = false;
   @Input() adressType: string;
-  @Output() setAddress: EventEmitter<any> = new EventEmitter();
-  @ViewChild('addresstext') addresstext: any;
-  @ViewChild('search',{static:false}) searchElementRef;
   currentLocation = 'Your Location';
-  autocompleteInput: string;
-  queryWait: boolean;
+  predDate: any ;
+  windSpeed = '--';
+  humidityData = '--';
+  activePower = '--';
+  windDirection = ''
+  worldWeather = 'https://api.worldweatheronline.com/premium/v1/weather.ashx';
+  key = '';
   constructor(private route: Router, public mapsAPILoader:MapsAPILoader, public ngZone: NgZone,private http: HttpClient) { }
   ngOnInit() {
     // this.findAdress();
   }
   removeSearch() {
-    this.searchToggle = false;
+    // this.searchToggle = false;
+    this.http.post('http://127.0.0.1:5000/getPower', {'windSpeed': '100', 'windDirection': '200'}, {responseType: 'text'})
+    .subscribe((res) => {
+      console.log(res);
+    });
   }
   getSearch() {
     this.searchToggle = true;
@@ -36,6 +42,34 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   toPage() {
     this.route.navigate(['analytics']);
   }
+  addEvent($event) {
+    console.log($event.value);
+    this.predDate = new Date($event.value).toISOString().split('T')[0];
+    console.log(this.predDate);
+  }
+  predict() {
+    if (this.predDate && this.lat && this.lng) {
+      console.log('predict');
+      // tslint:disable-next-line: no-unused-expression
+      console.log(this.worldWeather + `?key=${this.key}&q=${this.lat},${this.lng}&date=${this.predDate}&format=json`);
+      this.http.get(this.worldWeather + `?key=${this.key}&q=${this.lat},${this.lng}&format=json&date=${this.predDate}`)
+      .subscribe((res: any) => {
+        this.windSpeed = res.data.current_condition[0].windspeedKmph;
+        this.windDirection = res.data.current_condition[0].winddirDegree;
+        this.humidityData = res.data.current_condition[0].humidity;
+        console.log(this.windSpeed, this.windDirection, this.humidityData);
+        // tslint:disable-next-line:max-line-length
+        this.http.post('http://127.0.0.1:5000/predict', {windSpeed: this.windSpeed, WindDirection: this.windDirection},{responseType: 'json'})
+        .subscribe((response) => {
+          console.log(response);
+        });
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      alert('Choose date and location Please');
+    }
+  }
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((postion) =>{
@@ -43,43 +77,24 @@ export class MapViewComponent implements OnInit, AfterViewInit {
           this.lat = postion.coords.latitude;
           this.lng = postion.coords.longitude;
           console.log(this.lat, this.lng);
-          this.mapsAPILoader.load().then(() => {
-            let geocoder = new google.maps.Geocoder;
-            let latlang = {lat: this.lat, lng: this.lng};
-            geocoder.geocode({'location': latlang}, (res) => {
-              console.log(res);
-              if (res[0]) {
-                this.currentLocation = res[0].formatted_address;
-                console.log(this.currentLocation);
-              } else {
-                // alert('No Location found');
-                this.currentLocation = 'Your Plant';
-              }
-            });
-          });
+          // this.mapsAPILoader.load().then(() => {
+          //   let geocoder = new google.maps.Geocoder;
+          //   let latlang = {lat: this.lat, lng: this.lng};
+          //   geocoder.geocode({'location': latlang}, (res) => {
+          //     console.log(res);
+          //     if (res[0]) {
+          //       this.currentLocation = res[0].formatted_address;
+          //       console.log(this.currentLocation);
+          //     } else {
+          //       // alert('No Location found');
+          //       this.currentLocation = 'Your Plant';
+          //     }
+          //   });
+          // });
         }
       });
     }
   }
-  ngAfterViewInit() {
-    this.getPlaceAutocomplete();
-  }
-  private getPlaceAutocomplete() {
-    const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
-        {
-            componentRestrictions: { country: 'US' },
-            types: ['geocode']  // 'establishment' / 'address' / 'geocode'
-        });
-    google.maps.event.addListener(autocomplete, 'place_changed', () => {
-        const place = autocomplete.getPlace();
-        this.invokeEvent(place);
-    });
-}
-
-invokeEvent(place: Object) {
-    this.setAddress.emit(place);
-}
-
   // findAdress(){
   //   this.mapsAPILoader.load().then(() => {
   //        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);

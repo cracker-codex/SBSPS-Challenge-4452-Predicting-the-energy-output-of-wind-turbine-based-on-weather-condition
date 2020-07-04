@@ -15,10 +15,10 @@
 <div>
     <div class="topBar">
       <div class="parentDiv">
-      <div *ngIf="!searchToggle" class="searchInp">
+      <div *ngIf="searchToggle" class="searchInp">
         <!-- <mat-form-field class="example-full-width"> -->
           <div style="justify-content: space-between;display: flex">
-              <input class="inp" [(ngModel)]="autocompleteInput" #addresstext  placeholder="Enter your farm location">
+              <input class="inp" placeholder="Enter your farm location">
               <button (click)="getSearch()" style="height: 59px;background-color: skyblue" mat-raised-button color="primary">
                   <mat-icon>search</mat-icon>              
               </button>
@@ -30,7 +30,7 @@
   
       </div>
     </div>
-      <div *ngIf="searchToggle" slot="end" class="btnClass">
+      <div *ngIf="!searchToggle" slot="end" class="btnClass">
         <button (click)="getSearch()" style="background: transparent" mat-fab color="primary">
             <mat-icon>search</mat-icon>              
         </button>
@@ -56,7 +56,7 @@
                   <div class="bottom1">Prediction date</div>
                     <mat-form-field style="width: 140px;margin-top: 15px" appearance="fill">
                             <mat-label style="color: whitesmoke">Date</mat-label>
-                            <input style="color: whitesmoke;" matInput [matDatepicker]="picker">
+                            <input (dateChange)="addEvent($event)" style="color: whitesmoke;" matInput [matDatepicker]="picker">
                             <mat-datepicker-toggle style="color: whitesmoke" matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
@@ -66,26 +66,26 @@
             <mat-grid-tile colspan="1" class="coll">
               <div class="col2">
                   <div class="bottom">Wind speed</div>
-                  <div><span class="num">10</span><span style="color: whitesmoke;margin-left: 3px;">Km/h</span></div>
+                  <div><span class="num">{{windSpeed}}</span><span style="color: whitesmoke;margin-left: 3px;">Km/h</span></div>
               </div>
             </mat-grid-tile>
             <mat-grid-tile colspan="1" class="col3">
                 <div class="col2">
                     <div class="bottom">Humidity</div>
-                    <div><span class="num">10</span><span style="color: whitesmoke;margin-left: 3px;">%</span></div>
+                    <div><span class="num">{{humidityData}}</span><span style="color: whitesmoke;margin-left: 3px;">%</span></div>
                 </div>
             </mat-grid-tile>
             <mat-grid-tile colspan="1" class="col4">
                 <div class="col2">
                     <div class="bottom">LV Active Power</div>
-                    <div><span class="num">1200</span><span style="color: whitesmoke;margin-left: 3px;">kW</span></div>
+                    <div><span class="num">{{activePower}}</span><span style="color: whitesmoke;margin-left: 3px;">kW</span></div>
                 </div>
             </mat-grid-tile>
           </mat-grid-list>
       </div>
     </div>
     <div class="navigateURL" >
-      <div class="moreTxt" (click)="toPage()"><mat-icon>arrow_drop_down_circle</mat-icon><div style="margin-top:3px;margin-left: 5px">More Analysis</div></div>
+      <div class="moreTxt" (click)="predict()"><mat-icon>arrow_drop_down_circle</mat-icon><div style="margin-top:3px;margin-left: 5px">Predict</div></div>
     </div>
   </div>
   
