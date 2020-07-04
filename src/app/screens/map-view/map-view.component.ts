@@ -19,19 +19,17 @@ export class MapViewComponent implements OnInit {
   windSpeed = '--';
   humidityData = '--';
   activePower = '--';
-  windDirection = ''
+  windDirection = '';
   worldWeather = 'https://api.worldweatheronline.com/premium/v1/weather.ashx';
+  placeUrl = 'https://api.opencagedata.com/geocode/v1/json';
   key = '';
+  key0 = '';
   constructor(private route: Router, public mapsAPILoader:MapsAPILoader, public ngZone: NgZone,private http: HttpClient) { }
   ngOnInit() {
     // this.findAdress();
   }
   removeSearch() {
-    // this.searchToggle = false;
-    this.http.post('http://127.0.0.1:5000/getPower', {'windSpeed': '100', 'windDirection': '200'}, {responseType: 'text'})
-    .subscribe((res) => {
-      console.log(res);
-    });
+    this.searchToggle = false;
   }
   getSearch() {
     this.searchToggle = true;
@@ -77,38 +75,13 @@ export class MapViewComponent implements OnInit {
           this.lat = postion.coords.latitude;
           this.lng = postion.coords.longitude;
           console.log(this.lat, this.lng);
-          // this.mapsAPILoader.load().then(() => {
-          //   let geocoder = new google.maps.Geocoder;
-          //   let latlang = {lat: this.lat, lng: this.lng};
-          //   geocoder.geocode({'location': latlang}, (res) => {
-          //     console.log(res);
-          //     if (res[0]) {
-          //       this.currentLocation = res[0].formatted_address;
-          //       console.log(this.currentLocation);
-          //     } else {
-          //       // alert('No Location found');
-          //       this.currentLocation = 'Your Plant';
-          //     }
-          //   });
-          // });
+          this.http.get(this.placeUrl + `?key=${this.key0}&q=${this.lat},${this.lng}`)
+          .subscribe((res: any) => {
+            console.log(res.results[0].formatted);
+            this.currentLocation = res.results[0].formatted;
+          });
         }
       });
     }
   }
-  // findAdress(){
-  //   this.mapsAPILoader.load().then(() => {
-  //        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-  //        autocomplete.addListener("place_changed", () => {
-  //          this.ngZone.run(() => {
-  //            // some details
-  //            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-  //            console.log(place.formatted_address,place.website,place.name,place.address_components[place.address_components.length - 1].long_name)
-  //            //set latitude, longitude and zoom
-  //            this.lat = place.geometry.location.lat();
-  //            this.lng = place.geometry.location.lng();
-  //            this.zoom = 12;
-  //          });
-  //        });
-  //      });
-  //  }
 }

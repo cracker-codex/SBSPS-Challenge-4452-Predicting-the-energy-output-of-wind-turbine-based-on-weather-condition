@@ -19,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSidenavModule,
     MatListModule,
     GoogleMapsModule,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
